@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="commons/header :: header" />
+
+<body>
+  <div th:replace="commons/menu :: menu" />
+
+  <div class="container">
+
+    <div class="row">
+      <h3>Permisos</h3>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <a th:href="@{/permisos/create}" class="btn btn-primary btn-sm mb-3">Nuevo permiso</a>
+        </div>
+    </div>
+
+    <div class="row">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Email</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="permiso : ${permisos}">
+            <th th:text="${permiso.codigo}" scope="row">1</th>
+            <td th:text="${permiso.descripcion}"></td>
+
+            <td>
+              <a class="btn btn-primary" th:href="@{/permisos/edit/}+${permiso.codigo}" href="#" role="button"><i class="bi bi-pencil-square"></i></a>
+              <a class="btn btn-primary" th:href="@{/permisos/delete/}+${permiso.codigo}" href="#" role="button"><i class="bi bi-trash"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+  
+  <div th:replace="commons/footer :: footer" class="container" /> 
+  </body>
+</html>
